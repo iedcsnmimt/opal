@@ -4,6 +4,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import Particles from "../components/particles";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Initialize Firebase (replace these with your Firebase project config)
 const firebaseConfig = {
@@ -44,6 +46,18 @@ const initialFormData: FormData = {
   agreeConditions: false,
 };
 
+const termsAndConditionsText = `
+  This form is governed by the terms and conditions of our platform:
+  - Providing wrong information or inappropriate texts can be punishable under Indian Penal Code, college, and IEDC rules.
+  - Personal details will not be shared without permission.
+  - Invalid or inappropriate content is prohibited.
+`;
+
+const displayTermsAndConditions = () => {
+  alert(termsAndConditionsText);
+};
+
+
 const Form: React.FC = () => {
     const [formData, setFormData] = useState<FormData>(initialFormData);
   
@@ -67,12 +81,15 @@ const Form: React.FC = () => {
       e.preventDefault();
   
       try {
-        await addDoc(collection(db, "forms"), formData); // Specify the document path as "forms/emailid"
+        await addDoc(collection(db, "forms"), formData); 
         console.log("Form data submitted successfully!");
-        setFormData(initialFormData); // Reset form data after submission
-      } catch (error) {
+        setFormData(initialFormData); 
+        toast.success("Congratulations! 🎉 Your form has been successfully submitted. Don't worry, we're here for you! Your well-being is our priority, and we're committed to supporting you every step of the way. Keep smiling, knowing that you're not alone, and together we'll overcome any challenge.")
+    } catch (error) {
         console.error("Error submitting form data:", error);
-      }
+        toast.error("Error submitting form data. Please try again.");
+    }
+    
     };
 
 
@@ -192,18 +209,23 @@ const Form: React.FC = () => {
           </div>
 
           <div className="mb-4 flex items-center">
-            <input
-              type="checkbox"
-              name="agreeConditions"
-              checked={formData.agreeConditions}
-              onChange={handleCheckboxChange}
-              className="mr-2 leading-tight"
-              required
-            />
-            <label className="text-gray-300 text-sm font-bold">
-              I agree to the conditions
-            </label>
-          </div>
+    <input
+        type="checkbox"
+        name="agreeConditions"
+        checked={formData.agreeConditions}
+        onChange={handleCheckboxChange}
+        className="mr-2 leading-tight"
+        required
+    />
+    <label className="text-gray-300 text-sm font-bold">
+        I agree to the conditions including the following:
+        <a href="#" onClick={displayTermsAndConditions}>
+   View Terms and Conditions
+</a>
+
+    </label>
+</div>
+
 
           <button
             type="submit"
@@ -213,6 +235,7 @@ const Form: React.FC = () => {
           </button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

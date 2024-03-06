@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   },
   description: "Developed My IEDC SNMIMT",
   openGraph: {
-    title: "opal.vercel.app",
+    title: "opaliedc.vercel.app",
     description:
       "Developed My IEDC SNMIMT",
-    url: "https://opal.vercel.app",
-    siteName: "opal.vercel.app",
+    url: "https://opaliedc.vercel.app",
+    siteName: "opaliedc.vercel.app",
     
     locale: "en-US",
     type: "website",
