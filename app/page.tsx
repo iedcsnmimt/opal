@@ -27,7 +27,7 @@ export default function Home() {
           >
             OPAL
           </Link>{" "}
-          Empowering women with safety, support, and community strength. Your secure haven unveiled.
+          Elevating Women,Inspiring Empowerment
         </h2>
    
 

@@ -59,6 +59,7 @@ const displayTermsAndConditions = () => {
 
 
 const Form: React.FC = () => {
+   const [expanded, setExpanded] = useState(false);
     const [formData, setFormData] = useState<FormData>(initialFormData);
   
     const handleChange = (
@@ -197,14 +198,16 @@ const Form: React.FC = () => {
           </div>
 
           <div className="mb-4">
-            <input
-              className="input-field w-full rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
+            <textarea
+              className={`input-field w-full rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                expanded ? "h-32" : "h-12"
+              }`}
               name="problemDescription"
               placeholder="Tell me about your problem"
               value={formData.problemDescription}
               onChange={handleChange}
               required
+              onClick={() => setExpanded(!expanded)}
             />
           </div>
 
