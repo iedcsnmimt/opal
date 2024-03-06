@@ -99,7 +99,7 @@ const Form: React.FC = () => {
       <Particles />
       <div className="container mx-auto flex justify-center items-center h-full">
         <form onSubmit={handleSubmit} className="bg-gray-800 rounded-lg shadow-lg p-8 w-full md:w-2/3 lg:w-1/2 mt-[-60px]">
-          <h2 className="text-2xl font-bold text-center mb-4 text-blue-400">Opel Form Tell about your problem</h2>
+          <h2 className="text-2xl font-bold text-center mb-4 text-blue-400">Opal Form Tell about your problem</h2>
           
           <div className="mb-4">
             <input
