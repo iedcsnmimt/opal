@@ -6,6 +6,11 @@ import React, { useState } from "react";
 import Particles from "../components/particles";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import sgMail from '@sendgrid/mail';
+import axios from 'axios';
+
+
+
 
 // Initialize Firebase (replace these with your Firebase project config)
 const firebaseConfig = {
@@ -58,6 +63,8 @@ const displayTermsAndConditions = () => {
 };
 
 
+
+
 const Form: React.FC = () => {
    const [expanded, setExpanded] = useState(false);
     const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -85,8 +92,11 @@ const Form: React.FC = () => {
         await addDoc(collection(db, "forms"), formData); 
         console.log("Form data submitted successfully!");
         setFormData(initialFormData); 
+        await axios.post('/api/submitForm', formData);
         toast.success("Congratulations! 🎉 Your form has been successfully submitted. Don't worry, we're here for you! Your well-being is our priority, and we're committed to supporting you every step of the way. Keep smiling, knowing that you're not alone, and together we'll overcome any challenge.")
-    } catch (error) {
+       
+  
+      } catch (error) {
         console.error("Error submitting form data:", error);
         toast.error("Error submitting form data. Please try again.");
     }
